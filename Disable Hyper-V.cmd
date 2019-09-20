@@ -43,9 +43,6 @@
  setlocal & cd /d %~dp0
  if '%1'=='ELEV' (del "%vbsGetPrivileges%" 1>nul 2>nul  &  shift /1)
 
-reg delete HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\LSA /v LsaCfgFlags /f
-reg delete HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\DeviceGuard /v LsaCfgFlags /f
-reg delete HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard /v EnableVirtualizationBasedSecurity /f
-reg delete HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard /v RequirePlatformSecurityFeatures /f
+bcdedit /set hypervisorlaunchtype off
 
-dism.exe /Online /Disable-Feature:Microsoft-Hyper-V-All
+shutdown /r
